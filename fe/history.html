@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <title>Historia</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!--    <link href="css/style.css" rel="stylesheet">-->
+    <link href="css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="http://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+        <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+            <span class="fs-4">Pokročilé informačné technológie</span>
+        </a>
+
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a href="index.html" class="nav-link" aria-current="page">Dashboard</a></li>
+            <li class="nav-item"><a href="#" class="nav-link active">Historia</a></li>
+        </ul>
+    </header>
+</div>
+<div class="container-fluid">
+    <div class="row p-2">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Historice merania</h6>
+                <button type="button" class="btn btn-primary" id="reload">Nacitaj</button>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable">
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Teplota (°C)</th>
+                            <th>Vlhkosť (%)</th>
+                            <th>Čas</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        let table = $('#dataTable').DataTable();
+        getData(table);
+
+        $('#reload').click(function () {
+            getData(table);
+        });
+    });
+
+    function getData(table) {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:5000/data",
+            success: function (data) {
+                table.rows.add(data).draw();
+            },
+            error: function () {
+                console.log("fail");
+            },
+            contentType: 'application/json',
+            dataType: 'json'
+        });
+    }
+</script>
+</body>
+</html>
