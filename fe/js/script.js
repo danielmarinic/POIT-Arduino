@@ -82,7 +82,7 @@ function addRowToTable(data, id, table) {
     row.push(id);
     row.push(data.temperature + ' °C');
     row.push(data.humidity + '%');
-    row.push(new Date().toTimeString());
+    row.push(new Date().toTimeString().split(' ')[0]);
     table.row.add(row).draw(false);
 }
 
