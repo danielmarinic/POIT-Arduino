@@ -1,5 +1,6 @@
 #include <ArduinoJson.h>
 #include <dht.h>
+#include <Time.h>
 
 
 #define dht_apin A0 // Analog Pin sensor is connected to
@@ -22,12 +23,17 @@ void setup() {
  
 void loop(){
     DHT.read11(dht_apin);
+    char today[20];
+    DateTime now = rtc.now();
+    sprintf(buf1, "%02d:%02d:%02d %02d/%02d/%02d",  now.hour(), now.minute(), now.second(), now.date(), now.month(), now.year());
 
     //print JSON
     Serial.print("{\"humidity\":");
     Serial.print(DHT.humidity);
     Serial.print(", \"temperature\":");
-    Serial.print(DHT.temperature); 
+    Serial.print(DHT.temperature);
+    Serial.print(", \"created_at\":");
+    Serial.print(today);
     Serial.println("}");
 
     //riadenie LED prost. Serial input

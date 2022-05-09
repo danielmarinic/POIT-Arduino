@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request
 from flask_serial import Serial
 from flask_socketio import SocketIO
+from flask_cors import CORS
+import datetime as dt
 
 import json
 
@@ -16,11 +18,8 @@ app.config['SERIAL_PARITY'] = 'N'
 app.config['SERIAL_STOPBITS'] = 1
 
 ser = Serial(app)
-socketio = SocketIO(app)
-
-@app.route('/')
-def index():
-    return render_template('index.html')
+socketio = SocketIO(app, cors_allowed_origins="*")
+CORS(app)
 
 @socketio.on('send')
 def handle_send(json_str):
@@ -30,8 +29,7 @@ def handle_send(json_str):
 
 @ser.on_message()
 def handle_message(msg):
-    print("receive a message:", msg.decode())
-    socketio.emit("serial_message", data={"message":str(msg.decode())})
+    socketio.emit("serial_message", data={"message":(str(msg.decode()))})
 
 @ser.on_log()
 def handle_logging(level, info):

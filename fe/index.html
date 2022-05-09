@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <title>Pokročilé informačné technológie</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <script src="js/socket.io.min.js"></script>
+    <script src="https://kit.fontawesome.com/8cf67992ac.js" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="http://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+<!--    <script src="js/jquery.dataTables.min.js"></script>-->
+    <script src="js/dataTables.bootstrap4.min.js"></script>
+
+
+    <script src="js/script.js"></script>
+</head>
+<body>
+<div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+        <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+            <span class="fs-4">Pokročilé informačné technológie</span>
+        </a>
+
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Dashboard</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Historia</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+        </ul>
+    </header>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-4 col-md-4 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                Teplota
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">27 °C</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa-solid fa-temperature-half fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-md-4 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                Vlhkosť
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">30%</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa-solid fa-water text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-md-4 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Žiarovka
+                            </div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><a href="#" id="led">OFF</a></div>
+                                </div>
+                                <div class="col">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-light led-color" value="led-red"><i class="fa-solid fa-circle-notch text-danger led-color-icon"></i></button>
+                                        <button type="button" class="btn btn-light led-color" value="led-green"><i class="fa-solid fa-circle text-success led-color-icon"></i></button>
+                                        <button type="button" class="btn btn-light led-color" value="led-blue"><i class="fa-solid fa-circle text-primary led-color-icon"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-lightbulb fa-2x text-gray-300" id="led-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Live data</h6>
+                <button class="btn btn-primary" id="start-button">Start</button>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable">
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Teplota</th>
+                            <th>Vlhkosť</th>
+                            <th>Čas</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+<!--                        <tr>-->
+<!--                            <td colspan="4" class="text-center">Dáta nie sú dostupné</td>-->
+<!--                        </tr>-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
